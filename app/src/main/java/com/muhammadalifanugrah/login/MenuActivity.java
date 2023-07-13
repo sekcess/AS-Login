@@ -2,15 +2,27 @@ package com.muhammadalifanugrah.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MenuActivity extends AppCompatActivity {
-
-    private Button _tampilMahasiswaButton;
-    private Intent _tampilMahasiswaIntent;
+    private Button _tampilMahasiswaButton, _tampilForexButton;
+    private Intent _tampilMahasiswaIntent, _tampilForexIntent;
 
 
     @Override
@@ -19,18 +31,52 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.acitivity_menu);
 
         initTampilMahasiswaButton();
+        initTampilForexButton();
+//        initTampilCuacaButton();
     }
 
-    private void initTampilMahasiswaButton()
-    {
-        _tampilMahasiswaButton = (Button) findViewById(R.id.tampilMahasiswaButton);
+//    private void initTampilCuacaButton()
+//    {
+//        _tampilCuacaButton = findViewById(R.id.tampilCuacaButton);
+//
+//        _tampilCuacaButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                _tampilCuacaIntent = new Intent(getApplicationContext(), CuacaMainActivity.class);
+//                startActivity(_tampilCuacaIntent);
+//            }
+//        });
+//    }
 
-        _tampilMahasiswaButton.setOnClickListener(new View.OnClickListener() {
+    private void initTampilForexButton()
+    {
+        _tampilForexButton = (Button) findViewById(R.id.tampilForexButton);
+
+        _tampilForexButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                _tampilMahasiswaIntent = new Intent(getApplicationContext(), TampilMahasiswaActivity.class);
-                startActivity(_tampilMahasiswaIntent);
+            public void onClick(View v)
+            {
+                _tampilForexIntent = new Intent(getApplicationContext(), ForexMainActivity.class);
+                startActivity(_tampilForexIntent);
+
             }
         });
     }
+
+    private void initTampilMahasiswaButton() {
+        _tampilMahasiswaButton = findViewById(R.id.inputMahasiswa);
+
+        _tampilMahasiswaButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                _tampilMahasiswaIntent = new Intent(getApplicationContext(), TampilMahasiswaActivity.class);
+                startActivity(_tampilMahasiswaIntent);
+
+            }
+        });
+
+    }
+
 }
